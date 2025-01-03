@@ -12,7 +12,7 @@ export default function App() {
     bad: 0,
   };
 
-  const LocalStorageData = () => {
+  const localStorageData = () => {
     const dataBase = localStorage.getItem("feedbackData");
     return dataBase ? JSON.parse(dataBase) : defaultState;
   };
@@ -24,7 +24,7 @@ export default function App() {
     });
   };
 
-  const [feedback, setFeedback] = useState(LocalStorageData);
+  const [feedback, setFeedback] = useState(localStorageData);
 
   const totalFeedBack = feedback.good + feedback.neutral + feedback.bad;
 
@@ -35,7 +35,7 @@ export default function App() {
   const positiveFeedBack = Math.round((feedback.good / totalFeedBack) * 100);
 
   useEffect(() => {
-    localStorage.getItem("feedbackData", JSON.stringify(feedback));
+    localStorage.setItem("feedbackData", JSON.stringify(feedback));
   }, [feedback]);
 
   return (
